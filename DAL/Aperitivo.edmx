@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AperitivoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descrizione" Type="varchar(max)" Nullable="false" />
+          <Property Name="Anno" Type="nchar" MaxLength="10" />
+          <Property Name="Data" Type="datetime" />
+          <Property Name="Risorse" Type="int" />
+        </EntityType>
+        <EntityType Name="Prenotazione">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrenotazioneRisorsa" Type="int" Nullable="false" />
+          <Property Name="Descrizione" Type="varchar" MaxLength="50" />
+          <Property Name="DataInizio" Type="datetime" />
+          <Property Name="DataFine" Type="datetime" />
+          <Property Name="PrenotazioneEvento" Type="int" />
+          <Property Name="PrenotazioneSala" Type="int" />
+        </EntityType>
+        <EntityType Name="Risorsa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Cognome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mail" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NumeroPosti" Type="int" />
+          <Property Name="Prenotabile" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Evento_Risorsa">
+          <End Role="Risorsa" Type="Self.Risorsa" Multiplicity="0..1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risorsa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="Risorse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenotazione_Evento">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="0..1" />
+          <End Role="Prenotazione" Type="Self.Prenotazione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prenotazione">
+              <PropertyRef Name="PrenotazioneEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenotazione_Risorsa">
+          <End Role="Risorsa" Type="Self.Risorsa" Multiplicity="1" />
+          <End Role="Prenotazione" Type="Self.Prenotazione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risorsa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prenotazione">
+              <PropertyRef Name="PrenotazioneRisorsa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenotazione_Sala">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Prenotazione" Type="Self.Prenotazione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prenotazione">
+              <PropertyRef Name="PrenotazioneSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AperitivoModelStoreContainer">
+          <EntitySet Name="Evento" EntityType="Self.Evento" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Prenotazione" EntityType="Self.Prenotazione" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Risorsa" EntityType="Self.Risorsa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Evento_Risorsa" Association="Self.FK_Evento_Risorsa">
+            <End Role="Risorsa" EntitySet="Risorsa" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenotazione_Evento" Association="Self.FK_Prenotazione_Evento">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Prenotazione" EntitySet="Prenotazione" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenotazione_Risorsa" Association="Self.FK_Prenotazione_Risorsa">
+            <End Role="Risorsa" EntitySet="Risorsa" />
+            <End Role="Prenotazione" EntitySet="Prenotazione" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenotazione_Sala" Association="Self.FK_Prenotazione_Sala">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Prenotazione" EntitySet="Prenotazione" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AperitivoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Evento">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descrizione" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Anno" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Data" Type="DateTime" Precision="3" />
+          <Property Name="Risorse" Type="Int32" />
+          <NavigationProperty Name="Risorsa" Relationship="Self.FK_Evento_Risorsa" FromRole="Evento" ToRole="Risorsa" />
+          <NavigationProperty Name="Prenotazione" Relationship="Self.FK_Prenotazione_Evento" FromRole="Evento" ToRole="Prenotazione" />
+        </EntityType>
+        <EntityType Name="Prenotazione">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrenotazioneRisorsa" Type="Int32" Nullable="false" />
+          <Property Name="Descrizione" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DataInizio" Type="DateTime" Precision="3" />
+          <Property Name="DataFine" Type="DateTime" Precision="3" />
+          <Property Name="PrenotazioneEvento" Type="Int32" />
+          <Property Name="PrenotazioneSala" Type="Int32" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK_Prenotazione_Evento" FromRole="Prenotazione" ToRole="Evento" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK_Prenotazione_Sala" FromRole="Prenotazione" ToRole="Sala" />
+          <NavigationProperty Name="Risorsa" Relationship="AperitivoModel.FK_Prenotazione_Risorsa" FromRole="Prenotazione" ToRole="Risorsa" />
+        </EntityType>
+        <EntityType Name="Risorsa">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Cognome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Evento" Relationship="Self.FK_Evento_Risorsa" FromRole="Risorsa" ToRole="Evento" />
+          <NavigationProperty Name="Prenotazione" Relationship="AperitivoModel.FK_Prenotazione_Risorsa" FromRole="Risorsa" ToRole="Prenotazione" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NumeroPosti" Type="Int32" />
+          <Property Name="Prenotabile" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Prenotazione" Relationship="Self.FK_Prenotazione_Sala" FromRole="Sala" ToRole="Prenotazione" />
+        </EntityType>
+        <Association Name="FK_Evento_Risorsa">
+          <End Role="Risorsa" Type="Self.Risorsa" Multiplicity="0..1" />
+          <End Role="Evento" Type="Self.Evento" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risorsa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Evento">
+              <PropertyRef Name="Risorse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenotazione_Evento">
+          <End Role="Evento" Type="Self.Evento" Multiplicity="0..1" />
+          <End Role="Prenotazione" Type="Self.Prenotazione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Evento">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prenotazione">
+              <PropertyRef Name="PrenotazioneEvento" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Prenotazione_Sala">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Prenotazione" Type="Self.Prenotazione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prenotazione">
+              <PropertyRef Name="PrenotazioneSala" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AperitivoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Evento" EntityType="Self.Evento" />
+          <EntitySet Name="Prenotazione" EntityType="Self.Prenotazione" />
+          <EntitySet Name="Risorsa" EntityType="Self.Risorsa" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" />
+          <AssociationSet Name="FK_Evento_Risorsa" Association="Self.FK_Evento_Risorsa">
+            <End Role="Risorsa" EntitySet="Risorsa" />
+            <End Role="Evento" EntitySet="Evento" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenotazione_Evento" Association="Self.FK_Prenotazione_Evento">
+            <End Role="Evento" EntitySet="Evento" />
+            <End Role="Prenotazione" EntitySet="Prenotazione" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenotazione_Sala" Association="Self.FK_Prenotazione_Sala">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Prenotazione" EntitySet="Prenotazione" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Prenotazione_Risorsa" Association="AperitivoModel.FK_Prenotazione_Risorsa">
+            <End Role="Risorsa" EntitySet="Risorsa" />
+            <End Role="Prenotazione" EntitySet="Prenotazione" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_Prenotazione_Risorsa">
+          <End Type="AperitivoModel.Risorsa" Role="Risorsa" Multiplicity="1" />
+          <End Type="AperitivoModel.Prenotazione" Role="Prenotazione" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Risorsa">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Prenotazione">
+              <PropertyRef Name="PrenotazioneRisorsa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AperitivoModelStoreContainer" CdmEntityContainer="AperitivoEntities">
+          <EntitySetMapping Name="Evento">
+            <EntityTypeMapping TypeName="AperitivoModel.Evento">
+              <MappingFragment StoreEntitySet="Evento">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="Anno" ColumnName="Anno" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Risorse" ColumnName="Risorse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Prenotazione">
+            <EntityTypeMapping TypeName="AperitivoModel.Prenotazione">
+              <MappingFragment StoreEntitySet="Prenotazione">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="PrenotazioneRisorsa" ColumnName="PrenotazioneRisorsa" />
+                <ScalarProperty Name="Descrizione" ColumnName="Descrizione" />
+                <ScalarProperty Name="DataInizio" ColumnName="DataInizio" />
+                <ScalarProperty Name="DataFine" ColumnName="DataFine" />
+                <ScalarProperty Name="PrenotazioneEvento" ColumnName="PrenotazioneEvento" />
+                <ScalarProperty Name="PrenotazioneSala" ColumnName="PrenotazioneSala" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Risorsa">
+            <EntityTypeMapping TypeName="AperitivoModel.Risorsa">
+              <MappingFragment StoreEntitySet="Risorsa">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Cognome" ColumnName="Cognome" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sala">
+            <EntityTypeMapping TypeName="AperitivoModel.Sala">
+              <MappingFragment StoreEntitySet="Sala">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="NumeroPosti" ColumnName="NumeroPosti" />
+                <ScalarProperty Name="Prenotabile" ColumnName="Prenotabile" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

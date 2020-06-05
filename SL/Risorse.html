@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Language" content="it" />
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="scripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="HomeAperitivo.html">HomeAperitivo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="Eventi.html">Eventi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Prenotazioni.html">Prenotazioni</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="Risorse.html">Risorse<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Sale.html">Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" hidden>Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Risorse Reti</h1>
+    <div>
+        <button onclick="" class="btn btn-primary" id="btnAllRisorse">Carica risorse</button>
+    </div>
+    <div>
+        <button onclick="" class="btn btn-primary" id="btnCercaRisorsaNome">Cerca risorse per nome</button>
+        <input type="text" id="inputCercaRisorsaNome" />
+        <button onclick="" class="btn btn-primary" id="btnCercaRisorsaCognome">Cerca risorse per cognome</button>
+        <input type="text" id="inputCercaRisorsaCognome" />
+        <a href="NuovaRisorsa.html" onclick="" class="btn btn-primary" id="btnNuovoEvento">Nuova Risorsa</></a>
+    </div>
+    <div>
+        <table class="table table-dark" id="tabellaRisorse">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Cognome</th>
+                    <th>Nome</th>
+                    <th>Username</th>
+                </tr>
+            </thead>
+            <tbody id="DatiRisorse"></tbody>
+        </table>
+    </div>
+    <script type="text/javascript" src="scripts/Risorsa.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            //Callback Function
+            CaricaRisorse();
+        });
+    </script>
+</body>
+    </html>

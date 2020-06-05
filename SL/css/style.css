@@ -1,0 +1,70 @@
+﻿
+
+body {
+    background-color: transparent;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    height: 100vh;
+}
+
+.logo {
+    width: 20%;
+    float: left;
+}
+
+    .logo img {
+        width: 60%;
+        height: auto;
+        float: right;
+    }
+
+.menu {
+    width: 75%;
+    float: right;
+    list-style: none;
+}
+
+    .menu li {
+        background: #ff6a00;
+        width: 170px;
+        border: 1px solid #fff;
+        height: 50px;
+        text-align: center;
+        color: #fff;
+        font-size: 16px;
+        float: left;
+        line-height: 50px;
+    }
+
+    .menu li a {
+        text-decoration: none;
+        font-family: merienda;
+        color: #fff;
+        text-transform: uppercase;
+    }
+
+    li:hover{
+        background: #000;
+    }
+
+    @media all and (max-width:769px){
+        .slicknav_menu{
+            display:block;
+            width:40%;
+            float: right;
+            background-color: black;
+        }
+        .slicknav_menu li {
+            background: #333;
+            text-align: center;
+            text-transform: uppercase;
+        }
+        .slicknav_menu a:hover{
+            background-color: transparent;
+            color: #fff;
+        }
+        .menu{
+            display: block;
+        }
+    }

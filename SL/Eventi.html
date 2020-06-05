@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Eventi</title>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+
+    <meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Language" content="it" />
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="scripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="HomeAperitivo.html">HomeAperitivo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="Eventi.html">Eventi<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Prenotazioni.html">Prenotazioni</a>
+                </li>
+                <li class="nav-item ">
+                    <a class="nav-link" href="Risorse.html">Risorse</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Sale.html">Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" hidden>Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <h1>Eventi Reti</h1>
+    <div>
+        <button onclick="CaricaEventi()" class="btn btn-primary" id="btnAllEventi">
+            Carica Eventi
+        </button>
+
+    </div>
+    <div>
+        <button onclick="" class="btn btn-primary" id="btnCercaEventoDescrizione">Cerca evento per descrizione</button>
+        <input type="text" id="inputCercaEventoDescrizione" />
+        <button onclick="" class="btn btn-primary" id="btnCercaEventoAnno">Cerca evento per anno</button>
+        <input type="text" id="inputCercaEventoAnno" />
+    </div>
+    <div>
+        <table class="table table-dark">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Descrizione</th>
+                    <th>Anno</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody id="DatiEventi"></tbody>
+        </table>
+    </div>
+    <div>
+        <a href="NuovoEvento.html" onclick="nuovoEvento()" class="btn btn-primary" id="btnNuovoEvento">Crea nuovo Evento</></a>
+    </div>
+    <script type="text/javascript" src="scripts/Evento.js"></script>
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function () {
+            //Callback Function
+            CaricaEventi();
+        });
+    </script>
+</body>
+</html>

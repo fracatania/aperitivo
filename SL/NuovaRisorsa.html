@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Nuovo Evento</title>
+    <meta name="viewport" content="width=device-width">
+    <meta charset="utf-8" />
+
+    <meta http-equiv="Content-type" content="text/html; charset=iso-8859-1" />
+    <meta http-equiv="Content-Language" content="it" />
+    <link rel="stylesheet" href="Bootstrap/css/bootstrap.min.css">
+    <script type="text/javascript" src="scripts/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="Bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script type="text/javascript" src="scripts/NuovaRisorsa.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="HomeAperitivo.html">HomeAperitivo</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="Eventi.html">Eventi</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Prenotazioni.html">Prenotazioni</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="Risorse.html">Risorse<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Sale.html">Sale</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" hidden>Disabled</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div>
+        <p><b>Crezione nuova Risorsa</p></b>
+    </div>
+    <form id="formNuovaRisorsa" >
+        <div class="form-group row">
+            <label for="inputGroupIDRisorsa" class="col-sm-2 col-form-label">ID</label>
+            <div class="col-sm-10">
+                <select class="custom-select" id="inputGroupIDRisorsa">
+                    <option selected>Select...</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputCognomeRisorse" class="col-sm-2 col-form-label">Cognome</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputCognomeRisorse" required="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputNomeRisorse" class="col-sm-2 col-form-label">Nome</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputNomeRisorse" required="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputUsernameRisorse" class="col-sm-2 col-form-label">Username</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control" id="inputUsernameRisorse" required="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputMailRisorse" class="col-sm-2 col-form-label">Mail</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control" id="inputEmailRisorsa" aria-describedby="emailHelp" pattern="[^@]+@[^@]+\.[a-zA-Z]{2,}" required="">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-10">
+                <input type="button" value="Inserisci" class="btn btn-primary" id="btnNuovaRisorsa">
+            </div>
+        </div>
+        <!--   <button class="btn btn-primary" type="submit">Submit form</button>   -->
+    </form>
+    </body>
+    </html>
